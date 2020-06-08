@@ -1,4 +1,4 @@
-using Lingowords.Domain;
+using Lingowords;
 using NUnit.Framework;
 
 namespace LingoWords.Test
