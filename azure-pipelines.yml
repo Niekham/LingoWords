@@ -21,6 +21,7 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
+#build project
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
@@ -28,7 +29,9 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+#run tests
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    configuration: '$(buildConfiguration)' 
+    codeCoverageEnabled: true
