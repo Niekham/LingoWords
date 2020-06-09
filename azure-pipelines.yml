@@ -35,22 +35,16 @@ steps:
   inputs:
     command: test
     projects: '$(System.DefaultWorkingDirectory)\Lingowords.Test\Lingowords.Test.csproj'
-    #arguments: '--configuration Debug --collect "Code coverage"'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
-
-- task: PublishSymbols@2
-  inputs:
-    SymbolsFolder: '$(Build.SourcesDirectory)/Lingowords'
-    SearchPattern: '**/bin/**/*.pdb'
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/Lingowords'
+    SourceFolder: '$(System.DefaultWorkingDirectory)\Lingowords'
     Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    TargetFolder: '$(System.DefaultWorkingDirectory)\Lingowords\bin\Release'
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)\Lingowords\bin\Release'
     ArtifactName: 'drop'
     publishLocation: 'Container'
