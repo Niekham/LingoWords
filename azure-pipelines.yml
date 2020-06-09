@@ -30,16 +30,11 @@ steps:
     configuration: '$(buildConfiguration)'
 
 #run tests
-#- task: DotNetCoreCLI@2
-#  displayName: Test
-#  inputs:
-#    command: test
-#    projects: '$(System.DefaultWorkingDirectory)\Lingowords.Test\Lingowords.Test.csproj'
-#    arguments: '--configuration Debug'
-
-- task: VSTest@2
+- task: DotNetCoreCLI@2
+  displayName: Test
   inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: 'Lingowords.Test.csproj'
-    searchFolder: '$(System.DefaultWorkingDirectory)\Lingowords.Test'
-    codeCoverageEnabled: true
+    command: test
+    projects: '$(System.DefaultWorkingDirectory)\Lingowords.Test\Lingowords.Test.csproj'
+    #arguments: '--configuration Debug --collect "Code coverage"'
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+
