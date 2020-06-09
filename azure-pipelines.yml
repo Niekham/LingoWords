@@ -32,12 +32,7 @@ steps:
 #run tests
 - task: VSTest@2
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)' 
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: '**\*Test*.dll'
+    searchFolder: '$(System.DefaultWorkingDirectory)'
     codeCoverageEnabled: true
-
-- task: PublishTestResults@2
-  inputs:
-    testResultsFormat: 'NUnit'
-    testResultsFiles: '**/TEST-*.xml'
-    failTaskOnFailedTests: true
