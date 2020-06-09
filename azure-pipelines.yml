@@ -37,8 +37,3 @@ steps:
     projects: '$(System.DefaultWorkingDirectory)\Lingowords.Test\Lingowords.Test.csproj'
     #arguments: '--configuration Debug --collect "Code coverage"'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
-
-- task: Docker@2
-  inputs:
-    command: 'buildAndPush'
-    Dockerfile: '$(System.DefaultWorkingDirectory)\Lingowords\Dockerfile'
