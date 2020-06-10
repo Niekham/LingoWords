@@ -34,17 +34,5 @@ steps:
   displayName: Test
   inputs:
     command: test
-    projects: 'Lingowords\Lingowords.Test\Lingowords.Test.csproj'
+    projects: '*Lingowords.Test'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
-
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: 'Lingowords\Lingowords'
-    Contents: '**'
-    TargetFolder: 'Lingowords\Lingowords\bin\Release'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: 'Lingowords\\Lingowords\bin\Release'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
