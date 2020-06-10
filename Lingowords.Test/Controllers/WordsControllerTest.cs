@@ -13,13 +13,9 @@ namespace Lingowords.Test.Controllers
     public class WordsControllerTest
     {
         private readonly HttpClient _client;
-        private readonly Language _language;
 
         public WordsControllerTest()
         {
-            //_language = Language.DUTCH;
-            //_words = new Words( new string[] { "woord", "woorden", "banaan", "graal", "aardbei", "harken", "paprika", "groen" }, _language );
-
             var factory = new WebApplicationFactory<Startup>();
 
             _client = factory.CreateClient();

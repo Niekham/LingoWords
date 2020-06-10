@@ -34,7 +34,7 @@ namespace Lingowords
             temp = temp.Replace("NAMEHOLDER", name);
             temp = temp.Replace("EXTENSION", ext);
 
-            var path = Path.Combine(Environment.CurrentDirectory, @"Words\", temp);
+            var path = Path.Combine(Environment.CurrentDirectory, @"Files\", temp);
             if (File.Exists(path))
             {
                 return path;

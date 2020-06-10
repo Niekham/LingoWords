@@ -28,7 +28,7 @@ namespace Lingowords.Controllers
         [Route("Word")]
         public string Word( string language = "DUTCH" )
         {
-            List<string> words = new List<string>(){ "woord", "kater", "tafel", "plant", "glans" };
+            IList<string> words = _processor.ListWords(language).WordsList();
             Random rnd = new Random();
 
             string value = words[rnd.Next(words.Count)];
