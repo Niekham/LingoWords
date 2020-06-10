@@ -41,9 +41,7 @@ namespace Lingowords
                 return path;
             }
 
-            path = Directory.GetCurrentDirectory().ToString();
-            var index = path.IndexOf("Lingowords");
-            return Path.Combine(path.Substring(0, index + ("Lingowords".Length)), "Lingowords\\Files", temp);
+            return Path.Combine(@"\home\runner\work\Lingowords\Lingowords\Lingowords\Files", temp);
         }
     }
 }
