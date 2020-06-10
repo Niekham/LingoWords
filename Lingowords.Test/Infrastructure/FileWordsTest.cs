@@ -34,7 +34,7 @@ namespace Lingowords.Test.Infrastructure
 
             bool actual = (result.Length > 0);
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
         }
     }
 }
