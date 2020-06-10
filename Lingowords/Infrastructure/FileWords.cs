@@ -34,13 +34,13 @@ namespace Lingowords
             temp = temp.Replace("NAMEHOLDER", name);
             temp = temp.Replace("EXTENSION", ext);
 
-            var path = Path.Combine(Environment.CurrentDirectory, @"Files\", temp);
+            var path = Path.Combine(Path.GetFullPath("Files"), temp);
             if (File.Exists(path))
             {
                 return path;
             }
 
-            path = Environment.CurrentDirectory.ToString();
+            path = Directory.GetCurrentDirectory();
             var index = path.IndexOf("Lingowords");
             return path.Substring(0, index + ("Lingowords".Length)) + "\\Lingowords\\Files\\" + temp;
         }
