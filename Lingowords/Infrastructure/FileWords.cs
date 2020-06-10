@@ -35,7 +35,15 @@ namespace Lingowords
             temp = temp.Replace("EXTENSION", ext);
 
             var path = Path.Combine(Directory.GetCurrentDirectory(), @"Files\", temp);
-            return path;
+
+            if (File.Exists(path))
+            {
+                return path;
+            }
+
+            path = Directory.GetCurrentDirectory().ToString();
+            var index = path.IndexOf("Lingowords");
+            return Path.Combine(path.Substring(0, index + ("Lingowords".Length)), "Lingowords\\Files", temp);
         }
     }
 }
