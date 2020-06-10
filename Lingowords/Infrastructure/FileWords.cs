@@ -6,11 +6,12 @@ namespace Lingowords
     /**
      * Implementation of IWordsReader
      */ 
-    class FileWords : IWordsFile
+    public class FileWords : IWordsFile
     {
         public FileWords(){
 
         }
+
         public bool Exists( string language )
         {
             return File.Exists( FilePath(language) );
@@ -18,8 +19,12 @@ namespace Lingowords
 
         public string[] Read(string language)
         {
-            var lines = File.ReadAllLines( FilePath(language) );
-            return lines;
+            if( Exists(language))
+            {
+                return File.ReadAllLines( FilePath(language) );
+            }
+
+            return new string[] { };
         }
 
         public string FilePath( string language, string name = "WORDS", string ext = "txt" ){
@@ -28,7 +33,9 @@ namespace Lingowords
             temp = temp.Replace("NAMEHOLDER", name);
             temp = temp.Replace("EXTENSION", ext);
 
-            return Path.Combine(Environment.CurrentDirectory, @"Words\", temp);
+            var path = Environment.CurrentDirectory.ToString();
+            var index = path.IndexOf("Lingowords");
+            return path.Substring(0, index + ("Lingowords".Length)) + "\\Lingowords\\Files\\" + temp;
         }
     }
 }

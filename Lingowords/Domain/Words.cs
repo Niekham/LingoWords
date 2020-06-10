@@ -7,10 +7,10 @@ namespace Lingowords
 {
     public class Words
     {
-        private Languages language;
+        private Language language;
         private IList<string> wordsList = new List<string>();
 
-        public Words(string[] words, Languages lang){
+        public Words(string[] words, Language lang){
             this.language = lang;
             foreach( string word in words ){
                 if( IsMatch(word) ){

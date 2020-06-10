@@ -6,13 +6,13 @@ namespace LingoWords.Test
     public class WordsTest
     {
         private Words _words;
-        private Languages _language;
+        private Language _language;
         private string[] _listOfWords;
 
         [SetUp]
         public void Setup()
         {
-            _language = Languages.DUTCH;
+            _language = Language.DUTCH;
             _listOfWords = new string[] { "23okeg", ".brokko", "time-elapsed", "woord", "lengte", "hoogte", "zwijgen", "kruis", "gruis", "Greta", "huis", "weerzien" };
             _words = new Words(_listOfWords, _language);
         }
@@ -34,7 +34,9 @@ namespace LingoWords.Test
         [Test]
         public void ReturnLanguageAsString()
         {
-            Assert.Pass(_words.Language());
+            var result = _words.Language();
+
+            Assert.IsTrue(result == _language.ToString());
         }
     }
 }

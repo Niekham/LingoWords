@@ -11,13 +11,13 @@ namespace Lingowords.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class LingoWordsController : ControllerBase
+    public class LingowordsController : ControllerBase
     {
-        private readonly ILogger<LingoWordsController> _logger;
+        private readonly ILogger<LingowordsController> _logger;
 
         private readonly IProcessor _processor;
 
-        public LingoWordsController(ILogger<LingoWordsController> logger, IProcessor processor)
+        public LingowordsController(ILogger<LingowordsController> logger, IProcessor processor)
         {
             _logger = logger;
             _processor = processor;

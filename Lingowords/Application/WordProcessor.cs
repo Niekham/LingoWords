@@ -20,7 +20,7 @@ namespace Lingowords
          */
         public Words ListWords( string language )
         {     
-            Languages lang = _ValidateEnum( language );
+            Language lang = _ValidateEnum( language );
             
             if( _memory.Exists( lang.ToString() ) ){
                 return _memory.Read( lang.ToString() );
@@ -32,7 +32,7 @@ namespace Lingowords
         /**
          * reads word from file and saves to memory
          */
-        public Words ReadAndSave( Languages language )
+        public Words ReadAndSave( Language language )
         {            
             string[] wordList = _file.Read( language.ToString() );
 
@@ -46,12 +46,13 @@ namespace Lingowords
         /**
          * check if language exists else return default: DUTCH
          */
-        private Languages _ValidateEnum( string language ){
-            if( Enum.IsDefined(typeof(Languages), language) && Enum.TryParse(language, out Languages parsed) ){
+        private Language _ValidateEnum( string language ){
+            var upper = language.ToUpper();
+            if( Enum.IsDefined(typeof(Language), upper) && Enum.TryParse(upper, out Language parsed) ){
                 return parsed;
             }
 
-            return Languages.DUTCH;
+            return Language.DUTCH;
         }
 
     }

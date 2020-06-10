@@ -4,6 +4,7 @@ namespace Lingowords{
         bool Exists( string path );
         Words Read( string path );
         void Save( string path, Words words );
+        void Remove(string key);
         
     }
 }

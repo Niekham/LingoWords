@@ -18,18 +18,29 @@ namespace Lingowords
             _cache.Set( words.Language(), words );
         }
 
-        public bool Exists( string key )
+        public bool Exists(string key)
         {
-            if( _cache.Get<Words>( key ) == null ){
-                return false;
+            if (_cache.TryGetValue(key, out Words words))
+            {
+                return true;
             }
 
-            return true;
+            return false;
         }
     
         public Words Read( string key )
         {
-            return _cache.Get<Words>( key );
+            if (_cache.TryGetValue(key, out Words words))
+            {
+                return words;
+            }
+
+            return null;
+        }
+
+        public void Remove(string key)
+        {
+            _cache.Remove(key);
         }
 
     }
