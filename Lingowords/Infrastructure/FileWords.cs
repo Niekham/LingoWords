@@ -35,7 +35,14 @@ namespace Lingowords
             temp = temp.Replace("NAMEHOLDER", name);
             temp = temp.Replace("EXTENSION", ext);
 
-            return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), folder, temp);
+            var path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), folder, temp);
+
+            if( File.Exists(path))
+            {
+                return path;
+            }
+
+            return  Path.Combine(Directory.GetCurrentDirectory(), "Files", temp);
         }
     }
 }

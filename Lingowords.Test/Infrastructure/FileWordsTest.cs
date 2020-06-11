@@ -29,7 +29,7 @@ namespace Lingowords.Test.Infrastructure
         {
             string[] result = _file.Read(language);
 
-            bool actual = (result.Length > 0);
+            bool actual = (result.Length > 0) && result[0] != "error";
 
             Assert.AreEqual(expected, actual);
         }
