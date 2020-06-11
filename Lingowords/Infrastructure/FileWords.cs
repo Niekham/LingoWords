@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 
 namespace Lingowords
 {
@@ -34,14 +35,7 @@ namespace Lingowords
             temp = temp.Replace("NAMEHOLDER", name);
             temp = temp.Replace("EXTENSION", ext);
 
-            var path = Path.Combine(Directory.GetCurrentDirectory(), @"Files\", temp);
-
-            if (File.Exists(path))
-            {
-                return path;
-            }
-
-            return Path.Combine(@"\home\runner\work\Lingowords\Lingowords\Lingowords\Files", temp);
+            return Path.Combine(Directory.GetCurrentDirectory(), @"Files\", temp);
         }
     }
 }

@@ -16,8 +16,24 @@ namespace Lingowords.Test.Controllers
 
         public WordsControllerTest()
         {
-            var factory = new WebApplicationFactory<Startup>();
+            var _processor = new Mock<IProcessor>();
+            _processor.As<IProcessor>().Setup(x => x.ListWords(It.IsAny<string>())).Returns(new Words(
+                    new string[] { "woord", "griezel", "verdamt", "grafiek", "perseel", "graad" },
+                    Language.DUTCH
+                ));
 
+
+            var factory = new WebApplicationFactory<Startup>()
+                .WithWebHostBuilder(builder =>
+                {
+                    builder.ConfigureServices(services =>
+                    {
+                        services.RemoveAll(typeof(IProcessor));
+                        services.AddTransient<IProcessor>(x => _processor.Object);
+                    });
+                });
+
+           
             _client = factory.CreateClient();
         }
 
