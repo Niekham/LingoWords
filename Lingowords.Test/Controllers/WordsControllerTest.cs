@@ -40,7 +40,7 @@ namespace Lingowords.Test.Controllers
         [Fact]
         public async Task Word()
         {
-            var message = new HttpRequestMessage(HttpMethod.Get, "/Lingowords/Word");
+            var message = new HttpRequestMessage(HttpMethod.Get, "/Word");
 
             var response = await _client.SendAsync(message);
             response.EnsureSuccessStatusCode();
@@ -51,7 +51,7 @@ namespace Lingowords.Test.Controllers
         [Fact]
         public async Task List()
         {
-            var message = new HttpRequestMessage(HttpMethod.Get, "/Lingowords/List");
+            var message = new HttpRequestMessage(HttpMethod.Get, "/List");
 
             var response = await _client.SendAsync(message);
             response.EnsureSuccessStatusCode();

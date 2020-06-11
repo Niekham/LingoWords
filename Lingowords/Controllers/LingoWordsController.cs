@@ -10,7 +10,7 @@ using System.Text.Json;
 namespace Lingowords.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/")]
     public class LingowordsController : ControllerBase
     {
         private readonly ILogger<LingowordsController> _logger;
@@ -21,6 +21,11 @@ namespace Lingowords.Controllers
         {
             _logger = logger;
             _processor = processor;
+        }
+
+        public string Index()
+        {
+            return "Page not found";
         }
 
         [HttpGet]
