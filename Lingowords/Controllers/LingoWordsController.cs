@@ -21,7 +21,6 @@ namespace Lingowords.Controllers
         {
             _logger = logger;
             _processor = processor;
-
         }
 
         [HttpGet]

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Linq;
+using System;
 
 namespace Lingowords
 {
@@ -21,9 +22,15 @@ namespace Lingowords
         public Words ListWords( string language )
         {     
             Language lang = _ValidateEnum( language );
-            
+
             if( _memory.Exists( lang.ToString() ) ){
-                return _memory.Read( lang.ToString() );
+
+                Words words = _memory.Read( lang.ToString() );
+                if( words.WordsList().Count == 0 ){
+                    return ReadAndSave( lang );
+                }
+
+                return words;
             }
 
             return ReadAndSave( lang );

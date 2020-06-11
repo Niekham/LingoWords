@@ -25,17 +25,17 @@ namespace Lingowords
                 return File.ReadAllLines( FilePath(language) );
             }
 
-            return new string[] { };
+            return new string[] { "error" };
         }
 
-        public string FilePath(string language, string name = "WORDS", string ext = "txt")
+        public string FilePath(string language, string folder = "Files", string name = "WORDS", string ext = "txt")
         {
             string temp = "LANGHOLDER-NAMEHOLDER.EXTENSION";
             temp = temp.Replace("LANGHOLDER", language);
             temp = temp.Replace("NAMEHOLDER", name);
             temp = temp.Replace("EXTENSION", ext);
 
-            return Path.Combine(Directory.GetCurrentDirectory(), @"Files\", temp);
+            return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), folder, temp);
         }
     }
 }

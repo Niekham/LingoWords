@@ -6,6 +6,6 @@ namespace Lingowords{
 
         string[] Read(string language);
 
-        string FilePath( string language, string name = "WORDS", string ext = "txt" );
+        string FilePath( string language, string folder = "Files", string name = "WORDS", string ext = "txt" );
     }
 }
