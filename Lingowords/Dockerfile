@@ -17,4 +17,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 COPY ["Files/*txt", "./Files"]
-ENTRYPOINT ["dotnet", "Lingowords.dll"]
+ENTRYPOINT ["dotnet", "Lingowords.dll", "--environment=Production"]
