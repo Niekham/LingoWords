@@ -34,16 +34,16 @@ steps:
   displayName: Test
   inputs:
     command: test
-    arguments: '--configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
+    arguments: '--configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)/Coverage/'
     publishTestResults: true
     projects: '*Lingowords.Test'
-  
+
 - task: PublishCodeCoverageResults@1
   displayName: 'Publish code coverage report'
   inputs:
     codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '$(Build.SourcesDirectory)/**/coverage.opencover.xml'
+    summaryFileLocation: '$(Build.SourcesDirectory)/**/coverage.cobertura.xml'
 
 - script: |
-    %USERPROFILE%\.nuget\packages\codecov\1.1.0\tools\codecov.exe -f "d:\a\1\s\Lingowords.Test\coverage.opencover.xml" -t $(CODECOV_TOKEN)
+    %USERPROFILE%\.nuget\packages\codecov\1.1.0\tools\codecov.exe -f "d:\a\1\s\Lingowords.Test\Coverage\coverage.cobertura.xml" -t $(CODECOV_TOKEN)
   displayName: Upload coverage to codecov.io
