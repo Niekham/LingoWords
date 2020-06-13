@@ -34,7 +34,7 @@ steps:
   displayName: Test
   inputs:
     command: test
-    arguments: '--configuration $(buildConfiguration) /p:CollectCoverage=true /p:Exclude="[*Program.cs]*%2c[*Startup.cs]*" /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/'
+    arguments: '--configuration $(buildConfiguration) /p:CollectCoverage=true /p:Exclude="[*Lingowords.Program]*%2c[*Lingowords.Startup]*" /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/'
     publishTestResults: true
     projects: '*Lingowords.Test'
 
