@@ -21,13 +21,12 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
       
-    - name: Test
-      run: dotnet test /p:CollectCoverage=true --no-restore --verbosity normal
-
-    - uses: actions/checkout@master
-    - uses: codecov/codecov-action@v1
+    - name: npm install, make test-coverage
+      run: |
+        npm install
+        dotnet test
+        
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
       with:
-        file: ./Lingowords.Test/coverage.json # optional
-        flags: unittests # optional
-        name: codecov-umbrella # optional
-        fail_ci_if_error: true # optional (default = false)
+        github-token: ${{ secrets.GITHUB_TOKEN }}
