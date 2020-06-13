@@ -1,0 +1,33 @@
+name: .NET Core
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+    - name: Install dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+      
+    - name: Test
+      run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=json /p:Threshold=80 /p:ExcludeByFile=\"../Lingowords/Program.cs,../Lingowords/Program.cs\"
+    
+    - uses: actions/checkout@master
+    - uses: codecov/codecov-action@v1
+      with:
+        file: ./coverage.json # optional
+        flags: unittests # optional
+        name: codecov-umbrella # optional
+        fail_ci_if_error: true # optional (default = false)
