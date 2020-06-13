@@ -20,4 +20,12 @@ jobs:
       run: dotnet build --configuration Release --no-restore
       
     - name: Test
-      run: dotnet test /p:CollectCoverage=true
+      run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./Coverage/
+    
+    - name: Codecov
+      uses: codecov/codecov-action@v1.0.7
+      with:
+        token: ${{secrets.CODECOV_TOKEN}}
+        file: ./Coverage/coverage.opencover.xml
+        fail_ci_if_error: true
+
