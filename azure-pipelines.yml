@@ -30,19 +30,11 @@ steps:
     configuration: '$(buildConfiguration)'
 
 #run tests
-- task: DotNetCoreCLI@2
-  displayName: Test
-  inputs:
-    command: test
-    arguments: '--configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
-    publishTestResults: true
-    projects: '*Lingowords.Test'
+- script: |
+    dotnet test ./Lingowords.Test/MyTestProject.csproj -c Debug --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+  displayName: 'Build source, tests and run tests with coverage'
 
-- task: PublishTestResults@2
-  condition: succeededOrFailed()
-  inputs:
-    testRunner: VSTest
-    testResultsFiles: '**/*.trx'
-    
-- powershell: .\codecov.ps1 -token $(CODECOV_TOKEN)
-  displayName: Upload to CodeCov.io
+# Upload coverage to codecov.io
+- script: |
+    %USERPROFILE%\.nuget\packages\codecov\1.1.0\tools\codecov.exe -f "./Lingowords.Test/coverage.opencover.xml" -t $(CODECOV_TOKEN)
+  displayName: Upload coverage to codecov.io
