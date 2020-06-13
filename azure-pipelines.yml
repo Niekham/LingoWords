@@ -35,4 +35,4 @@ steps:
   inputs:
     command: test
     projects: '*Lingowords.Test'
-    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+    arguments: '--configuration $(buildConfiguration) --/p:CollectCoverage=true'
