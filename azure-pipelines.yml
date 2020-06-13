@@ -39,5 +39,5 @@ steps:
     projects: '*Lingowords.Test'
 
 - script: |
-    %USERPROFILE%\.nuget\packages\codecov\1.1.0\tools\codecov.exe -f "coverage.opencover.xml" -t $(CODECOV_TOKEN)
+    %USERPROFILE%\.nuget\packages\codecov\1.1.0\tools\codecov.exe -f "d:\a\1\s\Lingowords.Test\coverage.opencover.xml" -t $(CODECOV_TOKEN)
   displayName: Upload coverage to codecov.io
