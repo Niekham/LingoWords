@@ -19,33 +19,32 @@ namespace Lingowords
         /**
          * get words from memory
          */
-        public Words ListWords( string language )
+        public Words ListWords( string language, bool common = false )
         {     
             Language lang = _ValidateEnum( language );
 
-            if( _memory.Exists( lang.ToString() ) ){
+            string key = lang.ToString() + (common ? "-COMMON" : ""); 
 
-                Words words = _memory.Read( lang.ToString() );
-                if( words.WordsList().Count == 0 ){
-                    return ReadAndSave( lang );
-                }
+            if( _memory.Exists( key ) ){
+
+                Words words = _memory.Read( key );
 
                 return words;
             }
 
-            return ReadAndSave( lang );
+            return ReadAndSave( lang, key );
         }
 
         /**
          * reads word from file and saves to memory
          */
-        public Words ReadAndSave( Language language )
+        public Words ReadAndSave( Language language, string key )
         {            
-            string[] wordList = _file.Read( language.ToString() );
+            string[] wordList = _file.Read( key );
 
             Words words = new Words( wordList, language );
 
-            _memory.Save( _file.FilePath(language.ToString()), words );
+            _memory.Save( _file.FilePath(key), words );
 
             return words;
         }

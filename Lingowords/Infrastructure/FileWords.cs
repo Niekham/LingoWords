@@ -13,26 +13,25 @@ namespace Lingowords
 
         }
 
-        public bool Exists( string language )
+        public bool Exists( string key )
         {
-            return File.Exists( FilePath(language) );
+            return File.Exists( FilePath(key) );
         }
 
-        public string[] Read(string language)
+        public string[] Read(string key)
         {
-            if( Exists(language))
+            if( Exists(key))
             {
-                return File.ReadAllLines( FilePath(language) );
+                return File.ReadAllLines( FilePath(key) );
             }
 
             return new string[] { "error" };
         }
 
-        public string FilePath(string language, string folder = "Files", string name = "WORDS", string ext = "txt")
+        public string FilePath(string key, string folder = "Resources", string ext = "txt")
         {
-            string temp = "LANGHOLDER-NAMEHOLDER.EXTENSION";
-            temp = temp.Replace("LANGHOLDER", language);
-            temp = temp.Replace("NAMEHOLDER", name);
+            string temp = "KEYHOLDER.EXTENSION";
+            temp = temp.Replace("KEYHOLDER", key);
             temp = temp.Replace("EXTENSION", ext);
 
             var path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), folder, temp);
@@ -42,7 +41,7 @@ namespace Lingowords
                 return path;
             }
 
-            return  Path.Combine(Directory.GetCurrentDirectory(), "Files", temp);
+            return  Path.Combine(Directory.GetCurrentDirectory(), "Resources", temp);
         }
     }
 }
