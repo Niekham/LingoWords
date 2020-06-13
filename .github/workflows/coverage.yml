@@ -19,12 +19,5 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
       
-    - name: npm install, make test-coverage
-      run: |
-        npm install
-        dotnet test /p:CollectCoverage=true 
-        
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Test
+      run: dotnet test /p:CollectCoverage=true
