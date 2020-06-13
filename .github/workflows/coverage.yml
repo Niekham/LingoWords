@@ -1,8 +1,6 @@
 name: .NET Core
 
-on:
-  push:
-    branches: [ master ]
+on: ["push"]
 
 jobs:
   build:
@@ -24,7 +22,7 @@ jobs:
     - name: npm install, make test-coverage
       run: |
         npm install
-        dotnet test
+        dotnet test /p:CollectCoverage=true 
         
     - name: Coveralls
       uses: coverallsapp/github-action@master
