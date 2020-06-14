@@ -34,7 +34,7 @@ namespace Lingowords.Test.Application
         }
 
         [TestCase("DUTCH", false)]
-        [TestCase("DUTCH-COMMON", true)]
+        [TestCase("DUTCH_COMMON", true)]
         public void ListWords_NotInMemory(string key, bool common)
         {
             _memory.As<IWordsMemory>().Setup(x => x.Exists(key)).Returns(false);
@@ -53,7 +53,7 @@ namespace Lingowords.Test.Application
         }
 
         [TestCase("DUTCH", false)]
-        [TestCase("DUTCH-COMMON", true)]
+        [TestCase("DUTCH_COMMON", true)]
         public void ListWords_InMemory(string key, bool common)
         {
             _memory.As<IWordsMemory>().Setup(x => x.Exists(key)).Returns(true);

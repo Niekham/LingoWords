@@ -15,7 +15,7 @@ namespace Lingowords.Test.Infrastructure
         }
 
         [TestCase("DUTCH", true)]
-        [TestCase("DUTCH-COMMON", true)]
+        [TestCase("DUTCH_COMMON", true)]
         [TestCase("glorbjech", false)]
         public void Exists(string language, bool expected)
         {
@@ -25,7 +25,7 @@ namespace Lingowords.Test.Infrastructure
         }
 
         [TestCase("DUTCH", true)]
-        [TestCase("DUTCH-COMMON", true)]
+        [TestCase("DUTCH_COMMON", true)]
         [TestCase("glorbjech", false)]
         public void Read(string key, bool expected)
         {
