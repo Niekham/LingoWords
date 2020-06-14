@@ -47,7 +47,7 @@ namespace Lingowords
         /**
          * check if language exists else return default: DUTCH
          */
-        private Language _ValidateEnum( string language ){
+        private static Language _ValidateEnum( string language ){
             var upper = language.ToUpper();
             if( Enum.IsDefined(typeof(Language), upper) && Enum.TryParse(upper, out Language parsed) ){
                 return parsed;
