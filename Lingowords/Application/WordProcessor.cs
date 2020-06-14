@@ -23,7 +23,7 @@ namespace Lingowords
         {     
             Language lang = _ValidateEnum( language );
 
-            string key = lang.ToString() + (common ? "-COMMON" : ""); 
+            string key = lang.ToString() + (common ? "_COMMON" : ""); 
 
             if( _memory.Exists( key ) ){
 
@@ -44,7 +44,7 @@ namespace Lingowords
 
             Words words = new Words( wordList, language );
 
-            _memory.Save( _file.FilePath(key), words );
+            _memory.Save( key, words );
 
             return words;
         }

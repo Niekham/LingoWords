@@ -20,7 +20,7 @@ namespace Lingowords
 
         public string[] Read(string key)
         {
-            if( Exists(key))
+            if( Exists(key) )
             {
                 return File.ReadAllLines( FilePath(key) );
             }
