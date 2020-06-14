@@ -16,5 +16,5 @@ RUN dotnet publish "Lingowords.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-COPY ["Resources/*txt", "./Resources"]
+COPY ["Resources/*txt", "./Resources/"]
 ENTRYPOINT ["dotnet", "Lingowords.dll", "--environment=Production"]
