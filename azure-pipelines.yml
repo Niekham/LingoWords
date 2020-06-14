@@ -48,7 +48,3 @@ steps:
   inputs:
     codeCoverageTool: 'Cobertura'
     summaryFileLocation: '$(Build.SourcesDirectory)\**\coverage.cobertura.xml'
-
-- script: |
-    %USERPROFILE%\.nuget\packages\codecov\1.11.1\tools\codecov.exe -f "$(Build.SourcesDirectory)\Coverage\coverage.cobertura.xml" -t $(CODECOV_TOKEN)
-  displayName: Upload coverage to codecov.io
