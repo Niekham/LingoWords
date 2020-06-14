@@ -6,25 +6,19 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.3.0-beta1" />
-		<PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
-	<PropertyGroup>
-	    <CodeAnalysisRuleSet>/Lingowords/myrules.ruleset</CodeAnalysisRuleSet>
-	    <Features>IOperation</Features>
-	    <NoWarn></NoWarn>
-    </PropertyGroup>
-
-    <ItemGroup>
-	    <AdditionalFiles Include="/Lingowords/stylecop.json" Link="stylecop.json">
-	      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	    </AdditionalFiles>
-    </ItemGroup>
-
-
-    <ItemGroup>
+  <ItemGroup>
     <None Update="Files\DUTCH-WORDS.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
