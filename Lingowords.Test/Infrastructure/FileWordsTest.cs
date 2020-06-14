@@ -15,7 +15,6 @@ namespace Lingowords.Test.Infrastructure
         }
 
         [TestCase("DUTCH", true)]
-        [TestCase("DUTCH_COMMON", true)]
         [TestCase("glorbjech", false)]
         public void Exists(string language, bool expected)
         {
@@ -25,13 +24,12 @@ namespace Lingowords.Test.Infrastructure
         }
 
         [TestCase("DUTCH", true)]
-        [TestCase("DUTCH_COMMON", true)]
         [TestCase("glorbjech", false)]
-        public void Read(string key, bool expected)
+        public void Read(string language, bool expected)
         {
-            string[] result = _file.Read(key);
+            string[] result = _file.Read(language);
 
-            bool actual = result.Length > 1;
+            bool actual = (result.Length > 0) && result[0] != "error";
 
             Assert.AreEqual(expected, actual);
         }

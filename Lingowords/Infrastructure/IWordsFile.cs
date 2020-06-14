@@ -2,10 +2,10 @@
 namespace Lingowords{
     public interface IWordsFile
     {
-        bool Exists(string key);
+        bool Exists( string language );
 
-        string[] Read(string key);
+        string[] Read(string language);
 
-        string FilePath( string language, string folder = "Files", string ext = "txt" );
+        string FilePath( string language, string folder = "Files", string name = "WORDS", string ext = "txt" );
     }
 }

@@ -14,8 +14,8 @@ namespace Lingowords
             _cache = cache;
         }
 
-        public void Save( string key, Words words ){
-            _cache.Set( key, words );
+        public void Save( string path, Words words ){
+            _cache.Set( words.Language(), words );
         }
 
         public bool Exists(string key)

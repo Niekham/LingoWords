@@ -17,7 +17,7 @@ namespace Lingowords.Test.Controllers
         public WordsControllerTest()
         {
             var _processor = new Mock<IProcessor>();
-            _processor.As<IProcessor>().Setup(x => x.ListWords(It.IsAny<string>(), It.IsAny<bool>())).Returns(new Words(
+            _processor.As<IProcessor>().Setup(x => x.ListWords(It.IsAny<string>())).Returns(new Words(
                     new string[] { "woord", "griezel", "verdamt", "grafiek", "perseel", "graad" },
                     Language.DUTCH
                 ));
@@ -37,20 +37,27 @@ namespace Lingowords.Test.Controllers
             _client = factory.CreateClient();
         }
 
-        [Theory]
-        [InlineData("/")]
-        [InlineData("/Word")]
-        [InlineData("/WordCommon")]
-        [InlineData("/List")]
-        [InlineData("/ListCommon")]
-        public async Task Controller( string url )
+        [Fact]
+        public async Task Word()
         {
-            var message = new HttpRequestMessage(HttpMethod.Get, url);
+            var message = new HttpRequestMessage(HttpMethod.Get, "/Word");
 
             var response = await _client.SendAsync(message);
             response.EnsureSuccessStatusCode();
 
             Assert.Equal("OK", response.StatusCode.ToString());
         }
+
+        [Fact]
+        public async Task List()
+        {
+            var message = new HttpRequestMessage(HttpMethod.Get, "/List");
+
+            var response = await _client.SendAsync(message);
+            response.EnsureSuccessStatusCode();
+
+            Assert.Equal("OK", response.StatusCode.ToString());
+        }
+
     }
 }
