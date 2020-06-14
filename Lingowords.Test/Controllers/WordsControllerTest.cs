@@ -37,27 +37,18 @@ namespace Lingowords.Test.Controllers
             _client = factory.CreateClient();
         }
 
-        [Fact]
-        public async Task Word()
+        [Theory]
+        [InlineData("/")]
+        [InlineData("/Word")]
+        [InlineData("/List")]
+        public async Task Controller( string url )
         {
-            var message = new HttpRequestMessage(HttpMethod.Get, "/Word");
+            var message = new HttpRequestMessage(HttpMethod.Get, url);
 
             var response = await _client.SendAsync(message);
             response.EnsureSuccessStatusCode();
 
             Assert.Equal("OK", response.StatusCode.ToString());
         }
-
-        [Fact]
-        public async Task List()
-        {
-            var message = new HttpRequestMessage(HttpMethod.Get, "/List");
-
-            var response = await _client.SendAsync(message);
-            response.EnsureSuccessStatusCode();
-
-            Assert.Equal("OK", response.StatusCode.ToString());
-        }
-
     }
 }

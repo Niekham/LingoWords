@@ -24,13 +24,7 @@ namespace Lingowords
             Language lang = _ValidateEnum( language );
 
             if( _memory.Exists( lang.ToString() ) ){
-
-                Words words = _memory.Read( lang.ToString() );
-                if( words.WordsList().Count == 0 ){
-                    return ReadAndSave( lang );
-                }
-
-                return words;
+                return _memory.Read( lang.ToString() );
             }
 
             return ReadAndSave( lang );

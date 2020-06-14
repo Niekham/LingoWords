@@ -33,14 +33,14 @@ namespace Lingowords.Test.Application
             _processor = new WordProcessor(_file.As<IWordsFile>().Object, _memory.As<IWordsMemory>().Object);
         }
 
-        [Test]
-        public void ListWords_NotInMemory()
+        [TestCase("DUTCH")]
+        public void ListWords_NotInMemory(string lang)
         {
-            _memory.As<IWordsMemory>().Setup(x => x.Exists("DUTCH")).Returns(false);
-            _memory.As<IWordsMemory>().Setup(x => x.Read("DUTCH")).Returns(_words);
-            _memory.As<IWordsMemory>().Setup(x => x.Save("DUTCH", _words));
+            _memory.As<IWordsMemory>().Setup(x => x.Exists(lang)).Returns(false);
+            _memory.As<IWordsMemory>().Setup(x => x.Read(lang)).Returns(_words);
+            _memory.As<IWordsMemory>().Setup(x => x.Save(lang, _words));
 
-            _file.As<IWordsFile>().Setup(x => x.Read("DUTCH")).Returns(_wordList);
+            _file.As<IWordsFile>().Setup(x => x.Read(lang)).Returns(_wordList);
 ;
           
             _processor.ListWords( "NOTEXISTINGLANGUAGE" );
@@ -51,14 +51,14 @@ namespace Lingowords.Test.Application
             _file.As<IWordsFile>().Verify(x => x.Read(It.IsAny<string>()), Times.Once());
         }
 
-        [Test]
-        public void ListWords_InMemory()
+        [TestCase("DUTCH")]
+        public void ListWords_InMemory(string lang)
         {
-            _memory.As<IWordsMemory>().Setup(x => x.Exists("DUTCH")).Returns(true);
-            _memory.As<IWordsMemory>().Setup(x => x.Read("DUTCH")).Returns(_words);
+            _memory.As<IWordsMemory>().Setup(x => x.Exists(lang)).Returns(true);
+            _memory.As<IWordsMemory>().Setup(x => x.Read(lang)).Returns(_words);
             ;
 
-            _processor.ListWords("DUTCH");
+            _processor.ListWords(lang);
 
 
             _memory.As<IWordsMemory>().Verify(x => x.Exists(It.IsAny<string>()), Times.Once());

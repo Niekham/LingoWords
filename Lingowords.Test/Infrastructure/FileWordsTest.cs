@@ -25,11 +25,11 @@ namespace Lingowords.Test.Infrastructure
 
         [TestCase("DUTCH", true)]
         [TestCase("glorbjech", false)]
-        public void Read(string language, bool expected)
+        public void Read(string key, bool expected)
         {
-            string[] result = _file.Read(language);
+            string[] result = _file.Read(key);
 
-            bool actual = (result.Length > 0) && result[0] != "error";
+            bool actual = result.Length > 1;
 
             Assert.AreEqual(expected, actual);
         }
